@@ -1,5 +1,3 @@
-import { sys } from 'typescript'
-
 class Game {
   category: string
   description: string
