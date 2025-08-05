@@ -6,17 +6,11 @@ import Gallery from '../../components/Gallery'
 import residentEvil from '../../assets/images/resident.png'
 import { Game } from '../Home'
 import { useEffect, useState } from 'react'
+import { useGetGameQuery } from '../../services/api'
 
 const Product = () => {
   const { id } = useParams()
-
-  const [game, setGame] = useState<Game>()
-  useEffect(() => {
-    fetch(`https://fake-api-tau.vercel.app/api/eplay/games/${id}`)
-      .then((res) => res.json())
-      .then((res) => setGame(res))
-      .catch((error) => console.error('Erro ao carregar o jogo:', error))
-  }, [id])
+  const { data: game } = useGetGameQuery(id!)
 
   if (!game) {
     return <h3>Carregando...</h3>
